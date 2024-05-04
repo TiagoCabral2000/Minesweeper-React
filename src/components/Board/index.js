@@ -62,7 +62,7 @@ class Board extends Component {
             // - se uma cell adjacente tiver uma mina, mostra o numero total de minas
             // - se nenhuma cell tiver uma mina adjacente, abre todas as celulas a volta e atualiza informacao
             // - se clicarmos numa mina logo a primeira tentativa, reseta o board e try again
-         console.log (numberOfMines);
+        
          let rows = this.state.rows; 
          let current = rows [cell.y][cell.x]; //queremos a celula q clicamos. Para a descrever temos o x(coluna) e y(linha)
          
@@ -79,7 +79,7 @@ class Board extends Component {
                })
          }
          else{ //Outras possibilidades. A cell pode estar com flag, estar ja aberta ou ter uma mine
-            if (!cell.hasFlag && !current.isOpen){ //Se nao tiver flag e estiver fechada ainda temos de abrir a cell
+            if (!cell.hasFlag && !current.isOpen){  //Se nao tiver flag e estiver fechada ainda temos de abrir a cell
                this.props.openCellClick();
                
                current.isOpen =  true; //Ja temos a cell aberta e o estado atualizado. falta saber quantas mines estao a volta para dar display na cell
@@ -90,6 +90,12 @@ class Board extends Component {
                if(!current.hasMine && numberOfMines === 0){
                   this.openAroundCell(cell);
                }
+
+               if (current.hasMine && this.props.openCells !== 0){
+                  this.props.endGame();
+                  alert("Game Over!");
+               }
+
             }
          }
       })

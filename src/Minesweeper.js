@@ -18,6 +18,13 @@ class Minesweeper extends Component {
       openCells: 0
    };
 
+   endGame = () => { //na funcao tick abaixo, precisa de status "running" para contar
+      this.setState({
+         status: "ended"
+      });
+
+   }
+
    tick = () => { //contagem do tempo segundo a segundo
       if (this.state.openCells > 0 && this.state.status === "running"){
          let time = this.state.time +1;
@@ -55,6 +62,7 @@ class Minesweeper extends Component {
             mines = {this.state.mines} 
             openCells = {this.state.openCells}
             openCellClick = {this.turnCell}
+            endGame = {this.endGame}
             />
       </div>;
    }
