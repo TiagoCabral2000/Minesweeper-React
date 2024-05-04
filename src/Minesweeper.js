@@ -52,6 +52,11 @@ class Minesweeper extends Component {
       
    }
 
+   changeFlagAmount = (amount) => {
+      this.setState({flags:this.state.flags + amount})
+
+   } 
+
    render() {
       return <div className="minesweeper">
          <h1>Minesweeper :)</h1>
@@ -63,6 +68,7 @@ class Minesweeper extends Component {
             openCells = {this.state.openCells}
             openCellClick = {this.turnCell}
             endGame = {this.endGame}
+            changeFlagAmount = {this.changeFlagAmount}
             />
       </div>;
    }

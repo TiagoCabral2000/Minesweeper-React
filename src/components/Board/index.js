@@ -102,6 +102,19 @@ class Board extends Component {
    };
 
 
+   flag = cell => {
+      if (this.props.status === "ended"){
+         return;
+      }
+      if(!cell.isOpenpen){
+         let rows = this.state.rows;
+
+         cell.hasFlag = !cell.hasFlag;
+         this.setState ({rows}); 
+         this.props.changeFlagAmount(cell.hasFlag ? -1 : 1); //changleFlagAmount em Minesweeper retira 1 na funcao ou acrescenta
+      }
+   }
+
    findMines = cell => {
       let minesInProximity = 0; 
       //temos de percorrer as 8 cells adjacentes a cell atual
@@ -148,6 +161,7 @@ class Board extends Component {
                cells = {row}
                key = {index}
                open = {this.open}
+               flag = {this.flag}
             />
          )
       })
