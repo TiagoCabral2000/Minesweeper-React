@@ -9,11 +9,18 @@ class Board extends Component {
          rows: this.createBoard(props)
       }
    }
+
+   componentWillReceiveProps(nextProps){
+      if (this.props.openCells > nextProps.openCells){
+         this.setState({
+            rows: this.createBoard(nextProps)
+         })
+      }
+   }
    
 
    //Board vai ser um grid com diferentes celulas. 2D array
-   createBoard = (props) => {
-      //Props is a special keyword in React that stands for properties and is used for passing data from one component to another. Data with props are passed in a unidirectional flow from parent to child.
+   createBoard = (props) => { //Props is a special keyword in React that stands for properties and is used for passing data from one component to another. Data with props are passed in a unidirectional flow from parent to child.
       let board = []; //empty array. Criar rows e depois colunas
 
       for (let i = 0; i < props.rows; i++){//props.rows propriedade passada de minesweeper.js
@@ -64,7 +71,7 @@ class Board extends Component {
             // - se clicarmos numa mina logo a primeira tentativa, reseta o board e try again
         
          let rows = this.state.rows; 
-         let current = rows [cell.y][cell.x]; //queremos a celula q clicamos. Para a descrever temos o x(coluna) e y(linha)
+         let current = rows[cell.y][cell.x]; //queremos a celula q clicamos. Para a descrever temos o x(coluna) e y(linha)
          
          
          //Vamos chechar se tem uma mina
