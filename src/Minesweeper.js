@@ -7,23 +7,20 @@ class Minesweeper extends Component {
    constructor(){
       super();
       this.intervals = [];
-   }
-   state = {
-      status: "waiting", //waiting, running, ended
-      rows: 10,
-      columns: 10,
-      flags: 10,
-      mines: 10,
-      time: 0,
-      openCells: 0
-   };
+  
+      this.state = {
+         status: "waiting", //waiting, running, ended
+         rows: 10,
+         columns: 10,
+         flags: 10,
+         mines: 10,
+         time: 0,
+         openCells: 0
+      };
 
-   endGame = () => { //na funcao tick abaixo, precisa de status "running" para contar
-      this.setState({
-         status: "ended"
-      });
-
+      this.baseState = this.state; //guarda uma copia do estado original para resetar o jogo
    }
+
 
    tick = () => { //contagem do tempo segundo a segundo
       if (this.state.openCells > 0 && this.state.status === "running"){
@@ -48,14 +45,32 @@ class Minesweeper extends Component {
 
       this.setState(prevState => {
          return {openCells: prevState.openCells +1 };
-      })
-      
+      }) 
    }
+
+   endGame = () => { //na funcao tick abaixo, precisa de status "running" para contar
+      this.setState({
+         status: "ended"
+      });
+
+   }
+
+   reset = () => {
+      this.intervals.map(clearInterval); //reset ao tempo apenas. depois temos de resetar o board
+      this.setState({...this.baseState}, () => {
+         this.intervals = [];
+      })
+   }
+
+
 
    render() {
       return <div className="minesweeper">
          <h1>Minesweeper :)</h1>
-         <BoardHead time={this.state.time} flagCount={this.state.flags} />
+         <BoardHead time={this.state.time} 
+                    flagCount={this.state.flags} 
+                    reset = {this.reset}
+                    />
          <Board 
             rows={this.state.rows} 
             columns={this.state.columns} 

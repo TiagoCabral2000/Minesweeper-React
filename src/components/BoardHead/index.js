@@ -13,7 +13,7 @@ const BoardHead = props => { //A nossa celula vai fazer varas coisas.
    return(
       <div className='board-head'>
          <div className='flag-count'>{props.flagCount}</div>
-         <button className='reset'>Reset</button>
+         <button className='reset' onClick = {props.reset}>Reset</button>
          <div className='timer'>{time}</div>
       </div>
    );
