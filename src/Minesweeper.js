@@ -70,7 +70,7 @@ class Minesweeper extends Component {
          <BoardHead time={this.state.time} 
                     flagCount={this.state.flags} 
                     reset = {this.reset}
-                    />
+         />
          <Board 
             rows={this.state.rows} 
             columns={this.state.columns} 
@@ -78,7 +78,7 @@ class Minesweeper extends Component {
             openCells = {this.state.openCells}
             openCellClick = {this.turnCell}
             endGame = {this.endGame}
-            />
+         />
       </div>;
    }
 }

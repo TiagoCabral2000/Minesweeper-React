@@ -51,6 +51,7 @@ class Board extends Component {
          else{
             cell.hasMine =  true;
          }
+         console.log(board); //util para verificar win condition - ver onde estao mines
       }
       return board;
    };
@@ -147,6 +148,22 @@ class Board extends Component {
       }
 
    }
+
+
+   checkForWinner = () => { //se o numero de flags que tivermos disponiveis for igual ao numero de cells em aberto???
+      if (this.state.openCells === ((this.state.columns * this.state.rows)-this.state.mines)){
+         this.setState({
+            status: "winner"
+         }, alert("Venceu!"))
+      }
+   }
+
+   componentDidUpdate(prevProps, prevState){
+      if(this.state.status === "running"){
+         this.checkForWinner();
+      }
+   }
+
 
    render() {
       let rows = this.state.rows.map((row,index) => {
