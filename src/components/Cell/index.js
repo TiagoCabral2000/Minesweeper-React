@@ -4,10 +4,11 @@ const Cell = props => { //A nossa celula vai fazer varas coisas.
    //criar funcao para definir as condicoes/estados das celulas
    let renderCell = () => {
       if (props.data.isOpen){
-         if (props.data.hasMine){
+         if (props.data.hasMine){ //Nao queremos mostrar flag numa mine
             return (
-               <div className = "cell open" onClick={ () => props.open(props.data) }> 
-                 m 
+               <div className = "cell open" onClick={ () => props.open(props.data) } onContextMenu={e => {
+                  e.preventDefault();}}>  
+                 mine
                </div>
             ) 
          }
@@ -18,20 +19,37 @@ const Cell = props => { //A nossa celula vai fazer varas coisas.
                </div>
             )  
          }
+
+        
          
          else{
             return (
-               <div className = "cell open" onClick={ () => props.open(props.data) }> 
-                  {props.data.count}
+               <div className = "cell open" onClick={ () => props.open(props.data) } onContextMenu={e => {
+                  e.preventDefault();
+                  props.flag(props.data)}}> 
+                 {props.data.count}
                </div>
             ) 
          }
       }
 
+      else if(props.data.hasFlag){
+         return (
+            <div className="cell open" 
+                  onClick = { () => props.open (props.data) }
+                  onContextMenu={e => {
+                     e.preventDefault();
+                     props.flag(props.data)}}>
+               flag
+            </div>
+         )
+      }
 
       else{
          return (
-            <div className = "cell" onClick={ () => props.open(props.data) }>
+            <div className = "cell" onClick={ () => props.open(props.data) } onContextMenu={e => {
+               e.preventDefault();
+               props.flag(props.data)}}>
                
             </div>
          )
@@ -42,3 +60,4 @@ const Cell = props => { //A nossa celula vai fazer varas coisas.
 };
 
 export default Cell;
+
