@@ -8,7 +8,7 @@ const Cell = props => { //A nossa celula vai fazer varas coisas.
             return (
                <div className = "cell open" onClick={ () => props.open(props.data) } onContextMenu={e => {
                   e.preventDefault();}}>  
-                 mine
+                 <img className="mine" src="img/mine.png"/>
                </div>
             ) 
          }

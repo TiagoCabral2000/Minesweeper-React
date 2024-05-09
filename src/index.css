@@ -1,8 +1,11 @@
 body {
+   background-color: rgb(120, 120, 120);
    margin: 0;
-   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-      "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+   font-family: "Ubuntu", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+      "Oxygen", "Cantarell", "Fira Sans", "Droid Sans",
       "Helvetica Neue", sans-serif;
+   font-style: bold;
+   
    -webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale;
 }
@@ -24,7 +27,6 @@ body {
 .board {
    width: 500px; 
    height: 500px;
-
 }
 
 .board .row{
@@ -42,9 +44,12 @@ body {
    height: 50px;
    width: 50px;
 }
+.mine{
+   width: 35px;
+}
 
 .board .row .cell.open{
-   background-color: rgb(114, 114, 114);
+   background-color: rgb(215, 151, 151);
 }
 .board .row .cell.open:hover{
    background-color: rgb(78, 78, 78);
@@ -52,23 +57,52 @@ body {
 .board .row .cell:hover{
    background-color: rgb(59, 59, 59);
 }
+
 .board-head {
+   background-color: rgba(0, 0, 0, 0.662);
+   font-size: 37px;
    display: flex;
-   height: 50px;
-   justify-content: space-between;
    align-items: center;
+   color: white;
+
+   height: 50px;
+   /* justify-content: space-between; */
+}
+.board-head .level {
+
+   color: white;
+   background-color: #302c2c;
+   font-family: "Ubuntu";
+   border: solid white 2px;
+   border-radius: 8px;
+
+   /* position: absolute;
+   margin-left: 20px; */
+}
+.board-head .center {
+   display: flex;
+   flex: 1;
+}
+.board-head span {
+   display: flex;
+   align-items: center;
+}
+.board-head .center .flags {
+   margin-left: auto;
+   margin-right: 50px;
+}
+.board-head .center .flags img {
+   height: 40px;
+   margin-right: 5px;
+}
+.board-head .center .timer {
+   margin-right: auto;
+}
+.board-head .center .timer img {
+   height: 48px;
+   margin-right: 5px;
 }
 
-.reset,
-.flag-count,
-.timer{
-   width: 55px;
-   border: solid;
-   height: 35px;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-}
 .reset{
-   font-size: 15px;
+font-size: 15px;
 }

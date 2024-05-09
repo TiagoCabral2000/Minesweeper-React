@@ -1,0 +1,56 @@
+.board-head {
+   background-color: rgba(0, 0, 0, 0.662);
+   font-size: 37px;
+   display: flex;
+   align-items: center;
+   color: white;
+
+   height: 50px;
+}
+
+.center {
+   display: flex;
+   flex: 1;
+}
+
+.board-head span {
+   display: flex;
+   align-items: center;
+}
+
+.flags {
+   margin-left: auto;
+   margin-right: 0.45em;
+}
+
+.flags img {
+   height: 40px;
+   margin-right: 5px;
+}
+
+.timer {
+   margin-right: auto;
+}
+
+.timer img {
+   height: 48px;
+   margin-right: 5px;
+}
+
+.reset, .level{
+   color: white;
+   background-color: #302c2c;
+   font-family: "Ubuntu";
+   border: solid white 1.5px;
+   border-radius: 8px;
+   padding: 5px;
+}
+
+.level{
+   margin-left: 0.45em;
+}
+
+.reset{
+   margin-right: 0.45em;
+}
+
