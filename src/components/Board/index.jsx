@@ -42,6 +42,16 @@ function Board(props) {
       return newBoard; // Return the populated board array
    };
 
+   const createNewBoard = () => {
+      const newBoard = createBoard();
+      setBoard(newBoard);
+   };
+
+   // Utilize o useEffect para observar mudanças nas props
+   useEffect(() => {
+      createNewBoard();
+   }, [props.rows, props.columns, props.mines]);
+
    //clique na cell:
 
    const open = (cell) => {

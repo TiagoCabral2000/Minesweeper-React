@@ -4,14 +4,14 @@ import BoardHead from "./components/BoardHead";
 
 function Minesweeper() {
   const [status, setStatus] = useState("waiting");
-  const [rows, setRows] =  useState (10);
-  const [columns, setColumns] = useState (10);
+  const [rows, setRows] =  useState (9);
+  const [columns, setColumns] = useState (9);
   const [mines, setMines] = useState(10);
   const [openCells, setOpenCells] = useState(0);
   const [flags, setFlags] = useState(10);
   const [time, setTime] = useState(0);
+  const [selectedLevel, setSelectedLevel] = useState("1");
 
-  
   useEffect(() => {
     // Start the timer when the game starts running
     if (openCells > 0 && status === "running") {
@@ -35,6 +35,31 @@ function Minesweeper() {
     setStatus("ended");
   };
 
+  const handleLevelChange = (event) => { //tenho q criar uma handle level e chamar o create panel la dentro
+    const { value } = event.currentTarget;
+    setSelectedLevel(value);
+  };
+
+  useEffect (() => {
+    if (selectedLevel === "1"){
+      setRows(9);
+      setColumns(9);
+      setMines(10);
+    }
+    if (selectedLevel === "2"){
+      setRows(16);
+      setColumns(16);
+      setMines(40);   
+    }
+    if (selectedLevel === "3"){
+      setRows(20);
+      setColumns(30);
+      setMines(99);
+    }
+    
+  })
+  console.log(rows);
+
   const reset = () => {
     // Reset the intervals and state
     setStatus("waiting");
@@ -56,7 +81,8 @@ function Minesweeper() {
           <BoardHead
             time={time}
             reset={reset}
-            flagCount={flags}   
+            flagCount={flags}
+            onLevelChange = {handleLevelChange}   
           />
           
           <Board

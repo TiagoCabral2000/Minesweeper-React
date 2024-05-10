@@ -9,8 +9,8 @@ const BoardHead = (props) => {
   return (
     <div className="board-head">
 
-      <select className="level">
-        <option selected value="1">Fácil</option>
+      <select className="level" onChange={props.onLevelChange}>
+        <option value="1">Fácil</option>
         <option value="2">Intermédio</option>
         <option value="3">Avançado</option>
       </select>
