@@ -101,7 +101,8 @@ function Minesweeper() {
             time={time}
             reset={reset}
             flagCount={flags}
-            onLevelChange = {onLevelChange}   
+            onLevelChange = {onLevelChange}  
+            
           />
           
           <Board
@@ -113,6 +114,7 @@ function Minesweeper() {
             openCellClick = {turnCell}
             endGame = {endGame}
             changeFlagAmount = {changeFlagAmount}
+            flags = {flags} 
           />
       </div>
   );

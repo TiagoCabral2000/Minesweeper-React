@@ -177,7 +177,7 @@ function Board(props) {
       <div className="board">
          
          {board.map((row, rowIndex) => (
-            <Row key={rowIndex} cells={row} open={open} flag={flag} />
+            <Row key={rowIndex} cells={row} open={open} flag={flag} flags = {props.flags}  />
          ))}
          
       </div>
