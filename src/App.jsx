@@ -77,19 +77,22 @@ function Minesweeper() {
 
 
   const reset = () => {
-    // Reset the intervals and state
     setStatus("waiting");
-    setRows(10);
-    setColumns(10);
-    setMines(10);
     setOpenCells(0);
-    setFlags(10);
     setTime(0);
+    if (selectedLevel === "1") {
+      setFlags(10);
+    } else if (selectedLevel === "2") {
+      setFlags(40);
+    } else {
+      setFlags(99);
+    }
   };
 
   const changeFlagAmount = (amount) => {
     setFlags(prevFlags => prevFlags + amount);
   };
+
 
   return (
       <div className="minesweeper">

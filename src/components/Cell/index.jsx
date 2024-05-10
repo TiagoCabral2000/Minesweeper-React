@@ -40,7 +40,7 @@ const Cell = props => { //A nossa celula vai fazer varas coisas.
                   onContextMenu={e => {
                      e.preventDefault();
                      props.flag(props.data)}}>
-               flag
+               <img className="flag" src="img/flag.png"/>
             </div>
          )
       }
