@@ -14,7 +14,7 @@ function Minesweeper() {
 
   useEffect(() => {
     // Start the timer when the game starts running
-    if (openCells > 0 && status === "running") {
+    if (status === "running") {
       const interval = setInterval(() => {
         setTime(prevTime => prevTime + 1);
       }, 1000);
@@ -22,7 +22,7 @@ function Minesweeper() {
       // Cleanup function to clear interval when the component unmounts or game ends
       return () => clearInterval(interval);
     }
-  }, [openCells, status]);
+  }, [status]);
 
   const turnCell = () => {
     if (openCells === 0 && status !== "running") {
