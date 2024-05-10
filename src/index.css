@@ -11,8 +11,7 @@ body {
 }
 
 .minesweeper {
-   width: 500px; 
-   height: 630px;
+   width: 95%; 
    border: 5px solid black;
    margin: auto;
 }
@@ -26,14 +25,14 @@ body {
 }
 
 .board {
-   width: 500px; 
-   height: 500px;
+   width: 100%; 
+   height: 100%;
 }
 
 .board .row{
    display: flex;
-   border: solid;
-   height: 50px;
+   border: solid black 1px;
+   width: 100%;
    border-bottom: none;
 }
 .board .row .cell{
@@ -43,7 +42,7 @@ body {
    border-right: 1px solid black;
    border-bottom: 1px solid black;
    height: 50px;
-   width: 50px;
+   width: 100%;
 }
 .mine{
    width: 35px;

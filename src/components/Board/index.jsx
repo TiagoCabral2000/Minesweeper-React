@@ -50,7 +50,8 @@ function Board(props) {
    // Utilize o useEffect para observar mudanças nas props
    useEffect(() => {
       createNewBoard();
-   }, [props.rows, props.columns, props.mines]);
+
+   }, [props.mines]);
 
    //clique na cell:
 

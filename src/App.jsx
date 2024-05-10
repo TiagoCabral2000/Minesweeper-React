@@ -35,30 +35,46 @@ function Minesweeper() {
     setStatus("ended");
   };
 
-  const handleLevelChange = (event) => { //tenho q criar uma handle level e chamar o create panel la dentro
-    const { value } = event.currentTarget;
-    setSelectedLevel(value);
-  };
-
-  useEffect (() => {
-    if (selectedLevel === "1"){
+  const onLevelChange = (event) => {
+    const selectedLevel = event.target.value;
+  
+    if (selectedLevel === "1") {
+      setSelectedLevel("1");
+    } else if (selectedLevel === "2") {
+      setSelectedLevel("2");
+    } else {
+      setSelectedLevel("3");
+    }
+  }
+  
+  useEffect(() => {
+    if (selectedLevel === "1") {
       setRows(9);
       setColumns(9);
       setMines(10);
+      setFlags(10);
     }
-    if (selectedLevel === "2"){
+  }, [selectedLevel]);
+  
+  useEffect(() => {
+    if (selectedLevel === "2") {
       setRows(16);
       setColumns(16);
-      setMines(40);   
+      setMines(40);
+      setFlags(40);
     }
-    if (selectedLevel === "3"){
-      setRows(20);
+  }, [selectedLevel]);
+  
+  useEffect(() => {
+    if (selectedLevel === "3") {
+      setRows(16);
       setColumns(30);
       setMines(99);
+      setFlags(99);
     }
-    
-  })
-  console.log(rows);
+  }, [selectedLevel]);
+
+
 
   const reset = () => {
     // Reset the intervals and state
@@ -82,7 +98,7 @@ function Minesweeper() {
             time={time}
             reset={reset}
             flagCount={flags}
-            onLevelChange = {handleLevelChange}   
+            onLevelChange = {onLevelChange}   
           />
           
           <Board
