@@ -5,7 +5,7 @@ function Board(props) {
    // const [rows, setRows] = useState(props.rows);
    // const [columns, setColumns] = useState(props.columns);
    const [board, setBoard] = useState([]);
-   const [openCells, setOpenCells] = useState(props.openCells);
+   const [, setOpenCells] = useState(props.openCells);
    // const [mines, setMines] = useState(props.mines);
    // const [flags, setFlags] = useState(props.flags);
 
@@ -42,36 +42,35 @@ function Board(props) {
       return newBoard; // Return the populated board array
    };
 
-   const createNewBoard = () => {
-      const newBoard = createBoard();
-      setBoard(newBoard);
-   };
 
    // Utilize o useEffect para observar mudanças nas props
    useEffect(() => {
-      createNewBoard();
-
+      const newBoard = createBoard();
+      setBoard(newBoard);
    }, [props.mines]);
 
    //clique na cell:
 
    const open = (cell) => {
+
       let asyncCountMines = new Promise((resolve) => {
          let mines = findMines(cell, board); // Pass board as argument
          resolve(mines);
       });
 
       asyncCountMines.then((numberOfMines) => {
+         
          let currentBoard = [...board];
          let currentCell = currentBoard[cell.y][cell.x];
 
          if (currentCell.hasMine && props.openCells === 0) {
             console.log("Esta celula tem uma mina! Restart!!!");
             props.endGame();
-         } else {
-            console.log(props.openCells);
+         } 
+         else {
+            
             if (!cell.hasFlag && !currentCell.isOpen) {
-               props.openCellClick(); // Remove 'this.' prefix
+               props.openCellClick();
 
                currentCell.isOpen = true;
                currentCell.count = numberOfMines;
@@ -79,17 +78,29 @@ function Board(props) {
                setBoard(currentBoard);
 
                if (!currentCell.hasMine && numberOfMines === 0) {
-                  openAroundCell(cell, board, open); // Pass board and open as arguments
+                  openAroundCell(cell, board, open); 
                }
 
                if (currentCell.hasMine && props.openCells !== 0) {
                   alert("Game Over!");
                   props.endGame();
+                  openAllBoard();
+               
                }
             }
          }
       });
    };
+
+   const openAllBoard = (cell) => {
+         for (let i = 0; i<props.rows; i++){
+            for (let j = 0; j<props.columns; j++){
+               cell = board[i][j];
+               cell.isOpen = true;
+            }
+         }
+      
+   }
 
    const findMines = (cell, board) => {
       let minesInProximity = 0;
