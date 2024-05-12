@@ -6,7 +6,15 @@ const Cell = (props) => {
 
     if (data.isOpen) {
 
-      if(data.wrongFlag){
+      if(data.mineFound){
+        return (
+          < div  className="cell open"  onClick={() => open(data)}  onContextMenu={ (e) => {e.preventDefault();} } >
+            <img className="mineFound" src="img/mineFound.png" />
+          </div>
+        )
+      }
+
+      else if(data.wrongFlag){
         return (
           < div  className="cell open"  onClick={() => open(data)}  onContextMenu={ (e) => {e.preventDefault();} } >
             <img className="flag" src="img/wrongFlag.png" />
@@ -14,13 +22,7 @@ const Cell = (props) => {
         )
       }
 
-      else if(data.mineFound){
-        return (
-          < div  className="cell open"  onClick={() => open(data)}  onContextMenu={ (e) => {e.preventDefault();} } >
-            <img className="mineFound" src="img/mineFound.png" />
-          </div>
-        )
-      }
+
 
       else if (data.hasMine) {
         return (

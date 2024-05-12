@@ -103,8 +103,8 @@ function Board(props) {
                   cell.isOpen = true;
                }
                if(!cell.hasMine && cell.hasFlag){
-                  cell.wrongFlag = true;
                   cell.hasFlag = false;
+                  cell.wrongFlag = true;
                   cell.isOpen = true;
                }
             }
