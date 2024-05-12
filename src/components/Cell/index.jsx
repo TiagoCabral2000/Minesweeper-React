@@ -9,7 +9,7 @@ const Cell = (props) => {
       if(data.mineFound){
         return (
           < div  className="cell open"  onClick={() => open(data)}  onContextMenu={ (e) => {e.preventDefault();} } >
-            <img className="mineFound" src="img/mineFound.png" />
+            <img className="mine" src="img/mineFound.png" />
           </div>
         )
       }
@@ -62,6 +62,19 @@ const Cell = (props) => {
           }}
         >
           <img className="flag" src="img/flag.png" />
+        </div>
+      );
+    } else if (data.hasAuxiliar){
+      return (
+        <div
+          className="cell"
+          onClick={() => open(data)}
+          onContextMenu={(e) => {
+            e.preventDefault();
+            flag(data);
+          }}
+        >
+          <img className="auxiliar" src="img/auxiliar.png" />
         </div>
       );
     } else {

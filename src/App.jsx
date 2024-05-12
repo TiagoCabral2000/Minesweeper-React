@@ -24,11 +24,13 @@ function Minesweeper() {
     }
   }, [status]);
 
-  const turnCell = () => {
+  const turnCell = (cell) => {
     if (openCells === 0 && status !== "running") {
       setStatus("running");
     }
-    setOpenCells(openCells => openCells + 1);
+    if(cell.isOpen){
+      setOpenCells(openCells => openCells + 1);
+    }
   };
 
   const endGame = () => {
@@ -54,27 +56,23 @@ function Minesweeper() {
       setMines(10);
       setFlags(10);
     }
-  }, [selectedLevel]);
-  
-  useEffect(() => {
+
     if (selectedLevel === "2") {
       setRows(16);
       setColumns(16);
       setMines(40);
       setFlags(40);
     }
-  }, [selectedLevel]);
-  
-  useEffect(() => {
+
     if (selectedLevel === "3") {
       setRows(16);
       setColumns(30);
       setMines(99);
       setFlags(99);
     }
+
+    reset();
   }, [selectedLevel]);
-
-
 
   const reset = () => {
     setStatus("waiting");
@@ -111,7 +109,7 @@ function Minesweeper() {
             columns={columns}
             mines={mines}
             openCells = {openCells}
-            openCellClick = {turnCell}
+            turnCell = {turnCell}
             endGame = {endGame}
             changeFlagAmount = {changeFlagAmount}
             flags = {flags} 

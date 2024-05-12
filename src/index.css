@@ -47,8 +47,8 @@ body {
 .mine, .flag{
    width: 35px;
 }
-.mineFound{
-   width: 110px;
+.auxiliar{
+   width: 55px;
 }
 
 .board .row .cell.open{

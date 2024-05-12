@@ -9,7 +9,6 @@ const Row = props => {
     return (
       <div className="row">
          {cells}
-
       </div>
    );
 

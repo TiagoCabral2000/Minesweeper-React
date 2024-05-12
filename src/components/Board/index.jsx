@@ -69,9 +69,8 @@ function Board(props) {
          else {
             
             if (!cell.hasFlag && !currentCell.isOpen) {
-               props.openCellClick();
-
                currentCell.isOpen = true;
+               props.turnCell(cell);
                currentCell.count = numberOfMines;
 
                setBoard(currentBoard);
@@ -143,15 +142,31 @@ function Board(props) {
          return;
       }
       if (!cell.isOpen) {
-         props.openCellClick();
+         props.turnCell(cell);
          let updatedRows = [...board.map((row) => [...row])]; //copia das rows
 
-         cell.hasFlag = !cell.hasFlag; //mudar para a propriedade oposta ate ao momento
+         if(!cell.hasFlag && !cell.hasAuxiliar){
+            cell.hasFlag = true;
+         }
+         else if(cell.hasFlag){
+            cell.hasFlag = false;
+            cell.hasAuxiliar = true;
+         }
+         else{
+            cell.hasAuxiliar = false;
+         }
+
          updatedRows[cell.y][cell.x].hasFlag = cell.hasFlag;
+         updatedRows[cell.y][cell.x].hasAuxiliar = cell.hasAuxiliar;
 
          setBoard(updatedRows); //atualiza o estado do board 
 
-         props.changeFlagAmount(cell.hasFlag ? -1 : 1); //atualiza o numero de flags em app.js
+         if(cell.hasFlag){
+            props.changeFlagAmount(-1);
+         }
+         else if(cell.hasAuxiliar){
+            props.changeFlagAmount(+1);
+         }
       }
    };
 
@@ -185,7 +200,15 @@ function Board(props) {
           const newBoard = createBoard();
           setBoard(newBoard);
       }
-  }, [props.openCells]); 
+  }, [props.openCells]);
+
+  useEffect(() => {
+   if (props.openCells + props.mines-props.flags == props.rows*props.columns) {
+      alert("Game Over!");
+      props.endGame();
+      openAllBoard();
+   }
+}, [props.openCells, props.flags]);
 
 //   useEffect(() => {
 //    if (props.rows && props.columns && props.mines) {
