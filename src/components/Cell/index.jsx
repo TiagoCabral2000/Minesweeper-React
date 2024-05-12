@@ -5,19 +5,31 @@ const Cell = (props) => {
     const { data, open, flag, flags } = props;
 
     if (data.isOpen) {
-      if (data.hasMine) {
+
+      if(data.wrongFlag){
         return (
-          <div
-            className="cell open"
-            onClick={() => open(data)}
-            onContextMenu={(e) => {
-              e.preventDefault();
-            }}
-          >
+          < div  className="cell open"  onClick={() => open(data)}  onContextMenu={ (e) => {e.preventDefault();} } >
+            <img className="flag" src="img/wrongFlag.png" />
+          </div>
+        )
+      }
+
+      else if(data.mineFound){
+        return (
+          < div  className="cell open"  onClick={() => open(data)}  onContextMenu={ (e) => {e.preventDefault();} } >
+            <img className="mineFound" src="img/mineFound.png" />
+          </div>
+        )
+      }
+
+      else if (data.hasMine) {
+        return (
+          < div  className="cell open"  onClick={() => open(data)}  onContextMenu={ (e) => {e.preventDefault();} } >
             <img className="mine" src="img/mine.png" />
           </div>
         );
-      } else if (data.count === 0) {
+      }
+      else if (data.count === 0) {
         return (
           <div className="cell open" onClick={() => open(data)}></div>
         );

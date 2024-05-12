@@ -64,7 +64,6 @@ function Board(props) {
          let currentCell = currentBoard[cell.y][cell.x];
 
          if (currentCell.hasMine && props.openCells === 0) {
-            console.log("Esta celula tem uma mina! Restart!!!");
             props.endGame();
          } 
          else {
@@ -85,7 +84,6 @@ function Board(props) {
                   alert("Game Over!");
                   props.endGame();
                   openAllBoard();
-               
                }
             }
          }
@@ -96,9 +94,21 @@ function Board(props) {
          for (let i = 0; i<props.rows; i++){
             for (let j = 0; j<props.columns; j++){
                cell = board[i][j];
-               cell.isOpen = true;
+               if(!cell.hasFlag){
+                  cell.isOpen = true;
+               }
+               if(cell.hasMine && cell.hasFlag){
+                  cell.mineFound = true;
+                  cell.hasFlag = false;
+                  cell.isOpen = true;
+               }
+               if(!cell.hasMine && cell.hasFlag){
+                  cell.wrongFlag = true;
+                  cell.hasFlag = false;
+                  cell.isOpen = true;
+               }
             }
-         }
+         }  
       
    }
 
@@ -188,7 +198,7 @@ function Board(props) {
       <div className="board">
          
          {board.map((row, rowIndex) => (
-            <Row key={rowIndex} cells={row} open={open} flag={flag} flags = {props.flags}  />
+            <Row key={rowIndex} cells={row} open={open} flag={flag} flags={props.flags}  />
          ))}
          
       </div>
