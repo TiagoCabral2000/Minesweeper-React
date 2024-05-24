@@ -40,9 +40,11 @@ function Minesweeper() {
   
     if (selectedLevel === "1") {
       setSelectedLevel("1");
-    } else if (selectedLevel === "2") {
+    } 
+    else if (selectedLevel === "2") {
       setSelectedLevel("2");
-    } else {
+    } 
+    else {
       setSelectedLevel("3");
     }
   }
@@ -54,21 +56,18 @@ function Minesweeper() {
       setMines(10);
       setFlags(10);
     }
-
     if (selectedLevel === "2") {
       setRows(16);
       setColumns(16);
       setMines(40);
       setFlags(40);
     }
-
     if (selectedLevel === "3") {
       setRows(16);
       setColumns(30);
       setMines(99);
       setFlags(99);
     }
-
     reset();
   }, [selectedLevel]);
 
@@ -78,9 +77,11 @@ function Minesweeper() {
     setTime(0);
     if (selectedLevel === "1") {
       setFlags(10);
-    } else if (selectedLevel === "2") {
+    } 
+    else if (selectedLevel === "2") {
       setFlags(40);
-    } else {
+    } 
+    else {
       setFlags(99);
     }
   };

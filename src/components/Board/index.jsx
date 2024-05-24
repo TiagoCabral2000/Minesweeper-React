@@ -29,7 +29,8 @@ function Board(props) {
 
          if (cell.hasMine) {
             i--; 
-         } else {
+         } 
+         else {
             cell.hasMine = true;
          }
       }
@@ -44,15 +45,16 @@ function Board(props) {
    }, [props.mines]);
 
    const open = (cell) => {
-
       let numberOfMines = findMines(cell, board);
      
       let currentBoard = [...board];
       let currentCell = currentBoard[cell.y][cell.x];
 
-      if (currentCell.hasMine && props.openCells === 0) {
-         props.endGame();
-      } else {
+      if (currentCell.hasMine && props.openCells === 0){
+         const newBoard = createBoard();
+         setBoard(newBoard);
+      } 
+      else {
          if (!cell.hasFlag && !currentCell.isOpen) {
             currentCell.isOpen = true;
             props.turnCell(cell);
@@ -65,7 +67,7 @@ function Board(props) {
             }
 
             if (currentCell.hasMine && props.openCells !== 0) {
-               alert("Game Over!");
+               alert("You lost!");
                props.endGame();
                openAllBoard();
             }
@@ -105,19 +107,13 @@ function Board(props) {
             const newRow = cell.y + row;
             const newCol = cell.x + col;
 
-            if (
-               newRow >= 0 &&
-               newRow < numRows &&
-               newCol >= 0 &&
-               newCol < numColumns
-            ) {
+            if (newRow >= 0 && newRow < numRows && newCol >= 0 && newCol < numColumns) {
                if (board[newRow][newCol].hasMine && !(row === 0 && col === 0)) {
                   minesInProximity++;
                }
             }
          }
       }
-
       return minesInProximity;
    };
 
@@ -182,8 +178,8 @@ function Board(props) {
   }, [props.openCells]);
 
   useEffect(() => {
-      if (props.openCells + props.mines-props.flags == props.rows*props.columns) {
-         alert("Game Over!");
+      if (props.openCells + props.mines-props.flags === props.rows*props.columns) {
+         alert("Ganhou!!!");
          props.endGame();
          openAllBoard();
       }
