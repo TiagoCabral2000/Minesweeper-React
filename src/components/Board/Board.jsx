@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Row from "../Row";
+import Row from "../Row/Row";
 
 function Board(props) {
    const [board, setBoard] = useState([]);

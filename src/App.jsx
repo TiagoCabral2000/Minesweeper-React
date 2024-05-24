@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Board from "./components/Board";
-import BoardHead from "./components/BoardHead";
+import Board from "./components/Board/Board";
+import BoardHead from "./components/BoardHead/BoardHead";
 
 function Minesweeper() {
   const [status, setStatus] = useState("waiting");
