@@ -2,12 +2,8 @@ import React, { useState, useEffect } from "react";
 import Row from "../Row";
 
 function Board(props) {
-   // const [rows, setRows] = useState(props.rows);
-   // const [columns, setColumns] = useState(props.columns);
    const [board, setBoard] = useState([]);
-   const [, setOpenCells] = useState(props.openCells);
-   // const [mines, setMines] = useState(props.mines);
-   // const [flags, setFlags] = useState(props.flags);
+   const [openCells, setOpenCells] = useState(props.openCells);
 
    const createBoard = () => {
       let newBoard = [];
@@ -32,61 +28,49 @@ function Board(props) {
          let cell = newBoard[randomRow][randomCol];
 
          if (cell.hasMine) {
-            i--; // If the cell already has a mine, decrement i and try again
+            i--; 
          } else {
             cell.hasMine = true;
          }
       }
 
       console.log(newBoard);
-      return newBoard; // Return the populated board array
+      return newBoard; 
    };
 
-
-   // Utilize o useEffect para observar mudanças nas props
    useEffect(() => {
       const newBoard = createBoard();
       setBoard(newBoard);
    }, [props.mines]);
 
-   //clique na cell:
-
    const open = (cell) => {
 
-      let asyncCountMines = new Promise((resolve) => {
-         let mines = findMines(cell, board); // Pass board as argument
-         resolve(mines);
-      });
+      let numberOfMines = findMines(cell, board);
+     
+      let currentBoard = [...board];
+      let currentCell = currentBoard[cell.y][cell.x];
 
-      asyncCountMines.then((numberOfMines) => {
-         
-         let currentBoard = [...board];
-         let currentCell = currentBoard[cell.y][cell.x];
+      if (currentCell.hasMine && props.openCells === 0) {
+         props.endGame();
+      } else {
+         if (!cell.hasFlag && !currentCell.isOpen) {
+            currentCell.isOpen = true;
+            props.turnCell(cell);
+            currentCell.count = numberOfMines;
 
-         if (currentCell.hasMine && props.openCells === 0) {
-            props.endGame();
-         } 
-         else {
-            
-            if (!cell.hasFlag && !currentCell.isOpen) {
-               currentCell.isOpen = true;
-               props.turnCell(cell);
-               currentCell.count = numberOfMines;
+            setBoard(currentBoard);
 
-               setBoard(currentBoard);
+            if (!currentCell.hasMine && numberOfMines === 0) {
+               openAroundCell(cell, currentBoard);
+            }
 
-               if (!currentCell.hasMine && numberOfMines === 0) {
-                  openAroundCell(cell, board, open); 
-               }
-
-               if (currentCell.hasMine && props.openCells !== 0) {
-                  alert("Game Over!");
-                  props.endGame();
-                  openAllBoard();
-               }
+            if (currentCell.hasMine && props.openCells !== 0) {
+               alert("Game Over!");
+               props.endGame();
+               openAllBoard();
             }
          }
-      });
+      }
    };
 
    const openAllBoard = (cell) => {
@@ -159,7 +143,7 @@ function Board(props) {
          updatedRows[cell.y][cell.x].hasFlag = cell.hasFlag;
          updatedRows[cell.y][cell.x].hasAuxiliar = cell.hasAuxiliar;
 
-         setBoard(updatedRows); //atualiza o estado do board 
+         setBoard(updatedRows); 
 
          if(cell.hasFlag){
             props.changeFlagAmount(-1);
@@ -174,20 +158,15 @@ function Board(props) {
       const numRows = rows.length;
       const numColumns = rows[0].length;
 
-      // Iterate over the adjacent cells and open them if they meet the criteria
       for (let row = -1; row <= 1; row++) {
          for (let col = -1; col <= 1; col++) {
-            // Calculate the indices of the adjacent cell
             const newRow = cell.y + row;
             const newCol = cell.x + col;
 
-            // Check if the indices are within the bounds of the board
             if(newRow >= 0 && newRow < numRows && newCol >= 0 && newCol < numColumns) {
                const currentCell = rows[newRow][newCol];
                if (!currentCell.hasMine && !currentCell.isOpen) {
-                  // Open the cell recursively if it meets the criteria
                   open(currentCell);
-                  // props.openCellClick();
                }
             }
          }
@@ -203,19 +182,12 @@ function Board(props) {
   }, [props.openCells]);
 
   useEffect(() => {
-   if (props.openCells + props.mines-props.flags == props.rows*props.columns) {
-      alert("Game Over!");
-      props.endGame();
-      openAllBoard();
-   }
-}, [props.openCells, props.flags]);
-
-//   useEffect(() => {
-//    if (props.rows && props.columns && props.mines) {
-//       const newBoard = createBoard();
-//       setBoard(newBoard);
-//    }  
-// }, [props.rows, props.columns, props.mines]);
+      if (props.openCells + props.mines-props.flags == props.rows*props.columns) {
+         alert("Game Over!");
+         props.endGame();
+         openAllBoard();
+      }
+   }, [props.openCells, props.flags]);
   
    return (
       <div className="board">

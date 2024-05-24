@@ -13,13 +13,11 @@ function Minesweeper() {
   const [selectedLevel, setSelectedLevel] = useState("1");
 
   useEffect(() => {
-    // Start the timer when the game starts running
     if (status === "running") {
       const interval = setInterval(() => {
         setTime(prevTime => prevTime + 1);
       }, 1000);
 
-      // Cleanup function to clear interval when the component unmounts or game ends
       return () => clearInterval(interval);
     }
   }, [status]);
@@ -91,7 +89,6 @@ function Minesweeper() {
     setFlags(prevFlags => prevFlags + amount);
   };
 
-
   return (
       <div className="minesweeper">
           <h1>Minesweeper :)</h1>
@@ -99,10 +96,8 @@ function Minesweeper() {
             time={time}
             reset={reset}
             flagCount={flags}
-            onLevelChange = {onLevelChange}  
-            
+            onLevelChange = {onLevelChange}   
           />
-          
           <Board
             status = {status}
             rows={rows}
