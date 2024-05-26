@@ -186,13 +186,14 @@ function Board(props) {
    }, [props.openCells, props.flags]);
   
    return (
-      <div className="board">
-         
+     
+      <div className="board">  
          {board.map((row, rowIndex) => (
             <Row key={rowIndex} cells={row} open={open} flag={flag} flags={props.flags}  />
          ))}
-         
+            
       </div>
+  
    );
 }
 

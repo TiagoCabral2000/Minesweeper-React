@@ -1,5 +1,5 @@
 body {
-   background-color: rgb(120, 120, 120);
+   
    margin: 0;
    font-family: "Ubuntu", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
       "Oxygen", "Cantarell", "Fira Sans", "Droid Sans",
@@ -11,44 +11,70 @@ body {
 }
 
 .minesweeper {
-   width: 95%; 
-   border: 5px solid black;
+   width: 65%; 
    margin: auto;
+   background-color: rgba(75, 75, 75, 0.651);
 }
 .minesweeper h1{
    display: flex;
    justify-content: center;
+   align-items: center;
+   height: 50px;
+   margin:0;
+   font-size: 40px;
+   background-color: white;
+   font-weight: 900;
+   padding-top: 20px;
+}
+.minesweeper h1 img{
+   width: 30px;
+   padding: 20px;
+   padding-top: 25px;
+}
+.minesweeper h2{
+   display: flex;
+   justify-content: center;
    height: 20px;
-   gap: 0;
-   margin-top: 10px;
-   font-size: 30px;
+   margin:0;
+   font-style: italic;
+   font-size: 17px;
+   background-color: white;
+   padding-bottom: 20px;
+   padding-top: 10px;
 }
 
+
 .board {
-   width: 100%; 
-   height: 100%;
+   display: grid;
+   justify-content: center;
+   margin:0 auto;
+   padding: 20px;
 }
 
 .board .row{
    display: flex;
-   border: solid black 1px;
-   width: 100%;
-   border-bottom: none;
+   justify-content: center; 
+   width: fit-content;
+   margin: 0;
 }
-.board .row .cell{
+.board .row .cell{ 
+   border: 1px solid rgba(7, 7, 7, 0.74); 
+   width: 38px;
+   height: 38px;
+   font-size: 15px;
+   font-weight: 500;
    display: flex;
    justify-content: center;
-   align-items: center;
-   border-right: 1px solid black;
-   border-bottom: 1px solid black;
-   height: 50px;
-   width: 100%;
+   align-items: center; 
 }
 .mine, .flag{
-   width: 35px;
+   width: 25px;
 }
 .auxiliar{
-   width: 55px;
+   width: 35px;
+}
+.wrongflag{
+   width: 20px;
 }
 
 .board .row .cell.open{
@@ -61,51 +87,15 @@ body {
    background-color: rgb(59, 59, 59);
 }
 
-.board-head {
-   background-color: rgba(0, 0, 0, 0.662);
-   font-size: 37px;
+h3{
    display: flex;
-   align-items: center;
-   color: white;
-
-   height: 50px;
-   /* justify-content: space-between; */
-}
-.board-head .level {
-
-   color: white;
-   background-color: #302c2c;
-   font-family: "Ubuntu";
-   border: solid white 2px;
-   border-radius: 8px;
-
-   /* position: absolute;
-   margin-left: 20px; */
-}
-.board-head .center {
-   display: flex;
-   flex: 1;
-}
-.board-head span {
-   display: flex;
-   align-items: center;
-}
-.board-head .center .flags {
-   margin-left: auto;
-   margin-right: 50px;
-}
-.board-head .center .flags img {
-   height: 40px;
-   margin-right: 5px;
-}
-.board-head .center .timer {
-   margin-right: auto;
-}
-.board-head .center .timer img {
-   height: 48px;
-   margin-right: 5px;
-}
-
-.reset{
-font-size: 15px;
+   justify-content: end;
+   padding: 0;
+   margin: 0;
+   padding-top: 10px;
+   background-color: white;
+   align-items:end;
+   font-style: italic;
+   font-size: 15px;
+   color: rgb(2, 2, 2);
 }

@@ -92,7 +92,8 @@ function Minesweeper() {
 
   return (
       <div className="minesweeper">
-          <h1>Minesweeper :)</h1>
+          <h1><img className="mine" src="img/mine.png" />Minesweeper <img className="mine" src="img/mine.png"/></h1>
+          <h2>Trabalho Prático de Linguagens Script - 2023/2024</h2>
           <BoardHead
             time={time}
             reset={reset}
@@ -110,6 +111,7 @@ function Minesweeper() {
             changeFlagAmount = {changeFlagAmount}
             flags = {flags} 
           />
+          <h3>Desenvolvido por: Rui Miranda & Tiago Cabral</h3>
       </div>
   );
 }

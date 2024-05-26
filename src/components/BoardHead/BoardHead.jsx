@@ -7,6 +7,7 @@ const BoardHead = (props) => {
   let time = `${minutes}:${formattedSeconds}`;
 
   return (
+    <div className="board-container">
     <div className="board-head">
 
       <select className="level" onChange={props.onLevelChange}>
@@ -22,6 +23,7 @@ const BoardHead = (props) => {
 
       <button className="reset" onClick= {props.reset}>Recomeçar</button>
 
+    </div>
     </div>
   );
 };

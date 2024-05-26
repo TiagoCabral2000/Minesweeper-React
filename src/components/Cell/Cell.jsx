@@ -17,7 +17,7 @@ const Cell = (props) => {
       else if(data.wrongFlag){
         return (
           < div  className="cell open"  onClick={() => open(data)}  onContextMenu={ (e) => {e.preventDefault();} } >
-            <img className="flag" src="img/wrongFlag.png" />
+            <img className="wrongflag" src="img/wrongFlag.png" />
           </div>
         )
       }
