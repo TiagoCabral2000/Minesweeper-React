@@ -1,5 +1,4 @@
 body {
-   
    margin: 0;
    font-family: "Ubuntu", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
       "Oxygen", "Cantarell", "Fira Sans", "Droid Sans",
@@ -10,8 +9,25 @@ body {
    -moz-osx-font-smoothing: grayscale;
 }
 
+.modal{
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+   height: 50px;
+   color: white;
+}
+.win{
+   background-color: #47a912;
+}
+.lose{
+   background-color: #a91212;
+}
+.modal b{
+   margin: auto;
+}
+
 .minesweeper {
-   width: 65%; 
+   width: 80%; 
    margin: auto;
    background-color: rgba(75, 75, 75, 0.651);
 }

@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Board from "./components/Board/Board";
 import BoardHead from "./components/BoardHead/BoardHead";
+import Modal from "./components/Modal/Modal";
 
 function Minesweeper() {
   const [status, setStatus] = useState("waiting");
+  const [result, setResult] = useState("");
   const [rows, setRows] =  useState (9);
   const [columns, setColumns] = useState (9);
   const [mines, setMines] = useState(10);
@@ -31,8 +33,13 @@ function Minesweeper() {
     }
   };
 
-  const endGame = () => {
+  const win = () => {
     setStatus("ended");
+    setResult("win");
+  };
+  const lose = () => {
+    setStatus("ended");
+    setResult("lose");
   };
 
   const onLevelChange = (event) => {
@@ -94,6 +101,10 @@ function Minesweeper() {
       <div className="minesweeper">
           <h1><img className="mine" src="img/mine.png" />Minesweeper <img className="mine" src="img/mine.png"/></h1>
           <h2>Trabalho Prático de Linguagens Script - 2023/2024</h2>
+          <Modal
+            status = {status}
+            result = {result}
+          />
           <BoardHead
             time={time}
             reset={reset}
@@ -107,7 +118,8 @@ function Minesweeper() {
             mines={mines}
             openCells = {openCells}
             turnCell = {turnCell}
-            endGame = {endGame}
+            win = {win}
+            lose = {lose}
             changeFlagAmount = {changeFlagAmount}
             flags = {flags} 
           />

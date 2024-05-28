@@ -8,22 +8,24 @@ const BoardHead = (props) => {
 
   return (
     <div className="board-container">
-    <div className="board-head">
+      
+      <div className="board-head">
 
-      <select className="level" onChange={props.onLevelChange}>
-        <option value="1">Fácil</option>
-        <option value="2">Intermédio</option>
-        <option value="3">Avançado</option>
-      </select>
+        <select className="level" onChange={props.onLevelChange}>
+          <option value="1">Fácil</option>
+          <option value="2">Intermédio</option>
+          <option value="3">Avançado</option>
+        </select>
 
-      <div className="center">
-        <span className="flags"><img src="/img/flag.png"/>{props.flagCount}</span>
-        <span className="timer"><img src="/img/clock.png"/>{time}</span>
+        <div className="center">
+          <span className="flags"><img src="/img/flag.png"/>{props.flagCount}</span>
+          <span className="timer"><img src="/img/clock.png"/>{time}</span>
+        </div>
+
+        <button className="reset" onClick= {props.reset}>Recomeçar</button>
+
       </div>
 
-      <button className="reset" onClick= {props.reset}>Recomeçar</button>
-
-    </div>
     </div>
   );
 };

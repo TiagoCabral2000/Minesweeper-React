@@ -67,8 +67,7 @@ function Board(props) {
             }
 
             if (currentCell.hasMine && props.openCells !== 0) {
-               alert("You lost!");
-               props.endGame();
+               props.lose();
                openAllBoard();
             }
          }
@@ -179,8 +178,7 @@ function Board(props) {
 
   useEffect(() => {
       if (props.openCells + props.mines-props.flags === props.rows*props.columns) {
-         alert("Ganhou!!!");
-         props.endGame();
+         props.win();
          openAllBoard();
       }
    }, [props.openCells, props.flags]);
