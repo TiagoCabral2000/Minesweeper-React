@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Board from "./components/Board/Board";
 import BoardHead from "./components/BoardHead/BoardHead";
 import Modal from "./components/Modal/Modal";
+import DarkMode from "./components/DarkMode/DarkMode";
 
 function Minesweeper() {
   const [status, setStatus] = useState("waiting");
@@ -99,31 +100,48 @@ function Minesweeper() {
 
   return (
       <div className="minesweeper">
-          <h1><img className="mine" src="img/mine.png" />Minesweeper <img className="mine" src="img/mine.png"/></h1>
+          
+          <div className = "title_container">
+
+            <div className = "title">
+              <h1><img className="mine" src="img/mine.png" />Minesweeper <img className="mine" src="img/mine.png"/>
+              </h1> 
+            </div>
+
+            <div className = "night_mode_button"><DarkMode /></div>
+
+          </div> 
+
           <h2>Trabalho Prático de Linguagens Script - 2023/2024</h2>
-          <Modal
-            status = {status}
-            result = {result}
-          />
-          <BoardHead
-            time={time}
-            reset={reset}
-            flagCount={flags}
-            onLevelChange = {onLevelChange}   
-          />
-          <Board
-            status = {status}
-            rows={rows}
-            columns={columns}
-            mines={mines}
-            openCells = {openCells}
-            turnCell = {turnCell}
-            win = {win}
-            lose = {lose}
-            changeFlagAmount = {changeFlagAmount}
-            flags = {flags} 
-          />
-          <h3>Desenvolvido por: Rui Miranda & Tiago Cabral</h3>
+          
+          <div className="game_zone">
+            
+            <Modal
+              status = {status}
+              result = {result}
+            />
+            <BoardHead
+              time={time}
+              reset={reset}
+              flagCount={flags}
+              onLevelChange = {onLevelChange}   
+            />
+            <Board
+              status = {status}
+              rows={rows}
+              columns={columns}
+              mines={mines}
+              openCells = {openCells}
+              turnCell = {turnCell}
+              win = {win}
+              lose = {lose}
+              changeFlagAmount = {changeFlagAmount}
+              flags = {flags} 
+            />
+
+          </div>
+
+          <h3>Desenvolvido por: Tiago Cabral</h3>
       </div>
   );
 }

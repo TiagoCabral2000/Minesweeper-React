@@ -1,10 +1,33 @@
+[data-theme = "light"] {
+   --body_backgroud: white;
+   --body_color: black;
+}
+[data-theme = "dark"] {
+   --body_backgroud: #0D1117;
+   --body_color: white;
+   .board .row .cell.open{
+      background-color: rgb(0, 235, 255,0.8);
+   }
+   .board .row .cell.open:hover{
+      background-color: rgba(0, 255, 255);
+ 
+   }
+   .board .row .cell:hover{
+      background-color: rgb(0, 235, 255,0.6);
+   }
+}
+
+* {
+   transition: all 0.2s ease-in-out;
+}
+
 body {
    margin: 0;
    font-family: "Ubuntu", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
       "Oxygen", "Cantarell", "Fira Sans", "Droid Sans",
       "Helvetica Neue", sans-serif;
    font-style: bold;
-   
+   background-color: var(--body_backgroud);
    -webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale;
 }
@@ -29,24 +52,61 @@ body {
 .minesweeper {
    width: 80%; 
    margin: auto;
+   
+}
+.game_zone{
    background-color: rgba(75, 75, 75, 0.651);
 }
-.minesweeper h1{
+
+.title_container{
    display: flex;
+  justify-content: center;
+   height: 80px;
+  
+}
+.title{
+   display: flex;
+   margin-left: 80px;
+   align-items: center;
+   flex: 1;
    justify-content: center;
+}
+
+.night_mode_button{
+   display: flex;
+   justify-content: flex-end;
+   align-items: center;
+}
+
+
+.minesweeper h1{
+   /* display: flex;
+   margin-left: 300px;
    align-items: center;
    height: 50px;
    margin:0;
    font-size: 40px;
-   background-color: white;
+   background-color: var(--body_backgroud);
    font-weight: 900;
-   padding-top: 20px;
-}
-.minesweeper h1 img{
-   width: 30px;
-   padding: 20px;
-   padding-top: 25px;
-}
+   padding-top: 20px; */
+   color: var(--body_color);
+   /* border: solid 1px black;
+   width: 100%; */
+}/*
+.dark_mode{
+   background-color: red;
+   display: flex;
+   align-items: flex-end;
+   justify-content: flex-end;
+   height: 50px;
+   border: solid 2px black;
+   gap: 200px;
+} */
+.minesweeper h1 img{ 
+   padding: 0px 20px 0px 10px;  
+} 
+
+
 .minesweeper h2{
    display: flex;
    justify-content: center;
@@ -54,9 +114,10 @@ body {
    margin:0;
    font-style: italic;
    font-size: 17px;
-   background-color: white;
+   background-color: var(--body_backgroud);
    padding-bottom: 20px;
    padding-top: 10px;
+   color: var(--body_color);
 }
 
 
@@ -109,9 +170,9 @@ h3{
    padding: 0;
    margin: 0;
    padding-top: 10px;
-   background-color: white;
+   background-color: var(--body_backgroud);
    align-items:end;
    font-style: italic;
    font-size: 15px;
-   color: rgb(2, 2, 2);
+   color: var(--body_color);
 }
